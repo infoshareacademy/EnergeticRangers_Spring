@@ -23,7 +23,7 @@ public class MyEventsList {
     private String monthOfEvent;
     private String yearOfEvent;
 
-    public MyEventsList(int id, int numberOfTickets, String nameOfEvent, double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong, String dayOfEvent, String monthOfEvent, String yearOfEvent) {
+    public MyEventsList(int id, int numberOfTickets, String nameOfEvent, double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
         this.id = id;
         this.numberOfTickets = numberOfTickets;
         this.nameOfEvent = nameOfEvent;

@@ -20,7 +20,7 @@ public class EventService {
 
     public List<Event> getAllEvent(String keyword) {
         if (keyword != null){
-            return eventRepository.findAll(keyword);
+        return eventRepository.findAll(keyword);
         }
         return eventRepository.findAll();
     }
