@@ -33,8 +33,7 @@ public class EventController {
 
     @RequestMapping("/available_events")
     public String getAllEvents(Model model) {
-        String keyword ="dla dzieci";
-        List<Event> list = service.getAllEvent(keyword);
+        List<Event> list = service.getAllEvent();
         model.addAttribute("event", list);
         return "eventsList";
 

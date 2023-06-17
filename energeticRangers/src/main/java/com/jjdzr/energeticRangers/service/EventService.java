@@ -18,11 +18,8 @@ public class EventService {
 
     }
 
-    public List<Event> getAllEvent(String keyword) {
-        if (keyword != null){
-            return eventRepository.findAll(keyword);
-        }
-        return eventRepository.findAll();
+    public List<Event> getAllEvent() {
+            return eventRepository.findAll();
     }
 
     public Event getEventById(int id)
