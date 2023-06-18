@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,8 +31,10 @@
                             <li><a href="available_events">Dostępne wydarzenia</a></li>
                             <li><a href="my_events">Moje eventy</a></li>
                             <li><a href="event_register">Dodaj nowy event</a></li>
+                            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Wyloguj</a></li>
 
                         </ul>
+                       <!-- <div>  Zalogowano jako <span sec:authentication="principal.username">User</span></div>-->
                     </nav>
                     <div class="header-right" >
                         <ul clas="menu food-nav-menu"></ul>
