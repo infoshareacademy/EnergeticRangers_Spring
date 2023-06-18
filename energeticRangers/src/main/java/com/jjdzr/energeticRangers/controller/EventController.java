@@ -26,7 +26,6 @@ public class EventController {
     @Autowired
     private MyEventsListService myEventService;
 
-
     @GetMapping("/")
     public String home() {
         return "home";
@@ -48,9 +47,6 @@ public class EventController {
         return "listing";
 
     }
-
-
-
 
     @PostMapping("/save")
     public String addEvent(@ModelAttribute Event event) {
