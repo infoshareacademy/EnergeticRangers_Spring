@@ -33,31 +33,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-/*    @Override
+    @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(
-                "/",
-                "/registration**",
-                "static/assets/**",
-                "/css/**",
-                "/images/**");
-    }*/
+
+                "static/assets/**");
+
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-/*http.authorizeRequests().antMatchers(
+       /* http.authorizeRequests().antMatchers(
         "/available_events**",
         "/event_register**",
         "/my_events**",
         "/save**").denyAll()*/
 
-    http.authorizeRequests().antMatchers(
+   http.authorizeRequests().antMatchers(
             "/",
-                        "/registration**",
-                        "/js/**",
-                        "/css/**",
-                        "/images/**").permitAll()
+                    "/registration**",
+                     "/js/**",
+                     "/css**",
+                       "/images/**").permitAll()
                 //.antMatchers("/login**").permitAll()*/
-                .anyRequest().authenticated()
+                //.anyRequest().authenticated()
+                //.anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")

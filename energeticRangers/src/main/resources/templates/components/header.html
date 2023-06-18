@@ -28,9 +28,9 @@
                         <ul class="menu food-nav-menu">
 
                             <li><a href="/">Home</a></li>
-                            <li><a href="available_events">Dostępne wydarzenia</a></li>
-                            <li><a href="my_events">Moje eventy</a></li>
-                            <li><a href="event_register">Dodaj nowy event</a></li>
+                            <li sec:authorize="isAuthenticated()"><a href="available_events">Dostępne wydarzenia</a></li>
+                            <li sec:authorize="isAuthenticated()"><a href="my_events">Moje eventy</a></li>
+                            <li sec:authorize="isAuthenticated()"><a href="event_register">Dodaj nowy event</a></li>
                             <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Wyloguj</a></li>
 
                         </ul>
