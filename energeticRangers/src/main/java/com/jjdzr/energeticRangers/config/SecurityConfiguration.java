@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -32,16 +33,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
+/*    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(
+                "/",
+                "/registration**",
+                "static/assets/**",
+                "/css/**",
+                "/images/**");
+    }*/
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                "/registration**",
-                "/login*",
-                "/h2-console**",
-                "/js/**",
-                "/css/**",
-                "images/**").permitAll()
-                //.anyRequest().authenticated()
+/*http.authorizeRequests().antMatchers(
+        "/available_events**",
+        "/event_register**",
+        "/my_events**",
+        "/save**").denyAll()*/
+
+    http.authorizeRequests().antMatchers(
+            "/",
+                        "/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/images/**").permitAll()
+                //.antMatchers("/login**").permitAll()*/
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
