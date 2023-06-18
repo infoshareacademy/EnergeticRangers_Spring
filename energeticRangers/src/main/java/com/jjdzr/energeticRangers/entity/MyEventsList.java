@@ -23,7 +23,10 @@ public class MyEventsList {
     private String monthOfEvent;
     private String yearOfEvent;
 
-    public MyEventsList(int id, int numberOfTickets, String nameOfEvent, double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
+    private Long userId;
+
+    public MyEventsList(Long userId, int id, int numberOfTickets, String nameOfEvent, double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
+        this.userId= userId;
         this.id = id;
         this.numberOfTickets = numberOfTickets;
         this.nameOfEvent = nameOfEvent;
@@ -34,14 +37,20 @@ public class MyEventsList {
         this.date = date;
         this.descriptionShort = descriptionShort;
         this.descriptionLong = descriptionLong;
-        this.dayOfEvent = dayOfEvent;
-        this.monthOfEvent = monthOfEvent;
-        this.yearOfEvent = yearOfEvent;
+
     }
 
     public MyEventsList()
     {
         super();
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public int getId() {

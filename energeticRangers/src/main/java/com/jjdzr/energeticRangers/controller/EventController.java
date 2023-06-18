@@ -3,9 +3,11 @@ package com.jjdzr.energeticRangers.controller;
 
 import com.jjdzr.energeticRangers.entity.Event;
 import com.jjdzr.energeticRangers.entity.MyEventsList;
+import com.jjdzr.energeticRangers.entity.User;
 import com.jjdzr.energeticRangers.repository.EventRepository;
 import com.jjdzr.energeticRangers.service.EventService;
 import com.jjdzr.energeticRangers.service.MyEventsListService;
+import com.jjdzr.energeticRangers.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class EventController {
 
     @Autowired
     private EventService service;
+
+    @Autowired
+    private UserServiceImpl userService;
 
     @Autowired
     private EventRepository eventRepository;
@@ -61,10 +66,12 @@ public class EventController {
         return "myEvents";
     }
 
-    @RequestMapping("/mylist/{id}")
-    public String getMyList(@PathVariable("id") int id) {
+    @RequestMapping("/mylist/{userId}/{id}")
+    public String getMyList(@PathVariable("userId")Long userId , @PathVariable("id") int id ){
         Event event = service.getEventById(id);
+        User user = userService.getUserById(userId);
         MyEventsList myEventsList = new MyEventsList(
+                user.getId(),
                 event.getId(),
                 event.getNumberOfTickets(),
                 event.getNameOfEvent(),
