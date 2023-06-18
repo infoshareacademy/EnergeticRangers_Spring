@@ -12,6 +12,7 @@ public class EventService {
 
     @Autowired
     private EventRepository eventRepository;
+
     public void save (Event event){
 
         eventRepository.save(event);
@@ -29,6 +30,8 @@ public class EventService {
         {
             return eventRepository.findById(id).get();
         }
+
+
 
         public void deleteById(int id)
         {

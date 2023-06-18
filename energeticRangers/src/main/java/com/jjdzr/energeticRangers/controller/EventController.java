@@ -6,6 +6,7 @@ import com.jjdzr.energeticRangers.entity.MyEventsList;
 import com.jjdzr.energeticRangers.repository.EventRepository;
 import com.jjdzr.energeticRangers.service.EventService;
 import com.jjdzr.energeticRangers.service.MyEventsListService;
+import com.jjdzr.energeticRangers.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ public class EventController {
 
     @Autowired
     private EventService service;
+
+    @Autowired
+    private UserServiceImpl userService;
 
     @Autowired
     private EventRepository eventRepository;
@@ -62,9 +66,10 @@ public class EventController {
     }
 
     @RequestMapping("/mylist/{id}")
-    public String getMyList(@PathVariable("id") int id) {
-        Event event = service.getEventById(id);
+    public String getMyList(@PathVariable("id") int Id ){
+        Event event = service.getEventById(Id);
         MyEventsList myEventsList = new MyEventsList(
+                event.getUserId(),
                 event.getId(),
                 event.getNumberOfTickets(),
                 event.getNameOfEvent(),
@@ -75,6 +80,7 @@ public class EventController {
                 event.getTypeOfEvent(),
                 event.getDescriptionShort(),
                 event.getDescriptionLong());
+        myEventsList.setUserId((long) userService.getCurrentUserId());
         myEventService.saveMyEvents(myEventsList);
         return "redirect:/my_events";
     }

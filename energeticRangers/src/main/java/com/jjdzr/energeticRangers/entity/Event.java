@@ -20,9 +20,12 @@ public class Event {
     private String descriptionShort;
     private String descriptionLong;
 
+    private Long userId;
 
 
-    public Event(int id, int numberOfTickets, String nameOfEvent, Double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
+
+    public Event(Long userId, int id, int numberOfTickets, String nameOfEvent, Double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
+        this.userId =userId;
         this.id = id;
         this.numberOfTickets = numberOfTickets;
         this.nameOfEvent = nameOfEvent;
@@ -34,6 +37,14 @@ public class Event {
         this.descriptionShort = descriptionShort;
         this.descriptionLong = descriptionLong;
 
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Event() {
