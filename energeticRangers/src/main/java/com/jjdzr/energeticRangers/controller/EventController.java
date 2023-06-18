@@ -3,6 +3,7 @@ package com.jjdzr.energeticRangers.controller;
 
 import com.jjdzr.energeticRangers.entity.Event;
 import com.jjdzr.energeticRangers.entity.MyEventsList;
+import com.jjdzr.energeticRangers.repository.EventRepository;
 import com.jjdzr.energeticRangers.service.EventService;
 import com.jjdzr.energeticRangers.service.MyEventsListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,12 @@ public class EventController {
     private EventService service;
 
     @Autowired
+    private EventRepository eventRepository;
+
+
+    @Autowired
     private MyEventsListService myEventService;
+
 
     @GetMapping("/")
     public String home() {
@@ -28,17 +34,23 @@ public class EventController {
 
     @GetMapping("/event_register")
     public String eventRegister() {
-        return "eventRegister";
+        return "registerEvent";
     }
 
     @RequestMapping("/available_events")
-    public String getAllEvents(Model model) {
-        String keyword ="dla dzieci";
-        List<Event> list = service.getAllEvent(keyword);
-        model.addAttribute("event", list);
-        return "eventsList";
+    public String getAllEventsForChildren(Model model) {
+        List<Event> eventForChildren = eventRepository.findAll("Dla dzieci");
+        List<Event> eventForAdults = eventRepository.findAll("Dla dorosłych");
+        List<Event> eventForSeniors = eventRepository.findAll("Dla seniorów");
+        model.addAttribute("eventforChildren", eventForChildren);
+        model.addAttribute("eventforAdults", eventForAdults);
+        model.addAttribute("eventforSeniors", eventForSeniors);
+        return "listing";
 
     }
+
+
+
 
     @PostMapping("/save")
     public String addEvent(@ModelAttribute Event event) {
@@ -50,7 +62,7 @@ public class EventController {
     public String getMyEvents(Model model) {
         List<MyEventsList> myEventsList = myEventService.getAllMyEvents();
         model.addAttribute("eventList", myEventsList);
-        return "myEventsList";
+        return "myEvents";
     }
 
     @RequestMapping("/mylist/{id}")
@@ -66,10 +78,7 @@ public class EventController {
                 event.getCity(),
                 event.getTypeOfEvent(),
                 event.getDescriptionShort(),
-                event.getDescriptionLong(),
-                event.getDayOfEvent(),
-                event.getMonthOfEvent(),
-                event.getYearOfEvent());
+                event.getDescriptionLong());
         myEventService.saveMyEvents(myEventsList);
         return "redirect:/my_events";
     }

@@ -19,12 +19,10 @@ public class Event {
     private String date;
     private String descriptionShort;
     private String descriptionLong;
-    private String dayOfEvent;
-    private String monthOfEvent;
-    private String yearOfEvent;
 
 
-    public Event(int id, int numberOfTickets, String nameOfEvent, Double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong, String dayOfEvent, String monthOfEvent, String yearOfEvent) {
+
+    public Event(int id, int numberOfTickets, String nameOfEvent, Double price, String imgUrl, String typeOfEvent, String city, String date, String descriptionShort, String descriptionLong) {
         this.id = id;
         this.numberOfTickets = numberOfTickets;
         this.nameOfEvent = nameOfEvent;
@@ -35,9 +33,7 @@ public class Event {
         this.date = date;
         this.descriptionShort = descriptionShort;
         this.descriptionLong = descriptionLong;
-        this.dayOfEvent = dayOfEvent;
-        this.monthOfEvent = monthOfEvent;
-        this.yearOfEvent = yearOfEvent;
+
     }
 
     public Event() {
@@ -124,29 +120,7 @@ public class Event {
         this.descriptionLong = descriptionLong;
     }
 
-    public String getDayOfEvent() {
-        return dayOfEvent;
-    }
 
-    public void setDayOfEvent(String dayOfEvent) {
-        this.dayOfEvent = dayOfEvent;
-    }
-
-    public String getMonthOfEvent() {
-        return monthOfEvent;
-    }
-
-    public void setMonthOfEvent(String monthOfEvent) {
-        this.monthOfEvent = monthOfEvent;
-    }
-
-    public String getYearOfEvent() {
-        return yearOfEvent;
-    }
-
-    public void setYearOfEvent(String yearOfEvent) {
-        this.yearOfEvent = yearOfEvent;
-    }
 }
 
 
