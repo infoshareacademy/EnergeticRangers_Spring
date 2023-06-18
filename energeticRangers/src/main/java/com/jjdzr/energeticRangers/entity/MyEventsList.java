@@ -8,6 +8,8 @@ import javax.persistence.Table;
 @Table(name="MyEvents")
 public class MyEventsList {
 
+
+
     @Id
     private int id;
     private int numberOfTickets;
@@ -156,4 +158,6 @@ public class MyEventsList {
     public void setYearOfEvent(String yearOfEvent) {
         this.yearOfEvent = yearOfEvent;
     }
+
+
 }

@@ -3,7 +3,6 @@ package com.jjdzr.energeticRangers.controller;
 
 import com.jjdzr.energeticRangers.entity.Event;
 import com.jjdzr.energeticRangers.entity.MyEventsList;
-import com.jjdzr.energeticRangers.entity.User;
 import com.jjdzr.energeticRangers.repository.EventRepository;
 import com.jjdzr.energeticRangers.service.EventService;
 import com.jjdzr.energeticRangers.service.MyEventsListService;
@@ -66,12 +65,11 @@ public class EventController {
         return "myEvents";
     }
 
-    @RequestMapping("/mylist/{userId}/{id}")
-    public String getMyList(@PathVariable("userId")Long userId , @PathVariable("id") int id ){
-        Event event = service.getEventById(id);
-        User user = userService.getUserById(userId);
+    @RequestMapping("/mylist/{id}")
+    public String getMyList(@PathVariable("id") int Id ){
+        Event event = service.getEventById(Id);
         MyEventsList myEventsList = new MyEventsList(
-                user.getId(),
+                event.getUserId(),
                 event.getId(),
                 event.getNumberOfTickets(),
                 event.getNameOfEvent(),
@@ -82,6 +80,7 @@ public class EventController {
                 event.getTypeOfEvent(),
                 event.getDescriptionShort(),
                 event.getDescriptionLong());
+        myEventsList.setUserId((long) userService.getCurrentUserId());
         myEventService.saveMyEvents(myEventsList);
         return "redirect:/my_events";
     }
