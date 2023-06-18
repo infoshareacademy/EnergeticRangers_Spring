@@ -83,6 +83,40 @@
     </table>
 </div>
 
+<div class="dish-box text-center" th:each="b:${event}">
+    <div class="dist-img">
+        <img src="assets/images/dish/1.png" th:src= "@{${b.imgUrl}}" alt="">
+    </div>
+    <div class="dish-title" >
+        <h3 class="h3-title" th:text = "${b.nameOfEvent}">Fresh Chicken Veggies</h3>
+        <p th:text = "${b.descriptionLong}">120 calories</p>
+    </div>
+    <div class="dish-info">
+        <ul>
+            <li>
+                <p>Data</p>
+                <b th:text = "${b.date}" >Non Veg</b>
+            </li>
+            <li>
+                <p>Miasto</p>
+                <b th:text = "${b.city}">2</b>
+            </li>
+        </ul>
+    </div>
+    <div class="dist-bottom-row">
+        <ul>
+            <li>
+                <b th:text = "${b.price}" >Rs. 499</b>
+            </li>
+            <li>
+                <button class="dish-add-btn">
+                    <i class="uil uil-plus"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
